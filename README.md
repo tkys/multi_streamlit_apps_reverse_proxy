@@ -25,7 +25,6 @@ cd composedir_ssl
 
 ### 証明書のディレクトリ配置
 ```shell
-sudo apt-get install certbot
 mkdir certs
 mkdir -p cert2/1 certs/2
 ```
@@ -33,6 +32,8 @@ mkdir -p cert2/1 certs/2
 ### 証明書発行
 
 ```shell
+sudo apt-get install certbot
+
 sudo certbot certonly --standalone -d 1.devcfspi.com
 sudo certbot certonly --standalone -d 2.devcfspi.com
 ```
