@@ -7,7 +7,7 @@ git clone ~~
 
 ## w/o ssl 
 ```shell
-cd compress
+cd composedir
 ```
 
 ### 起動
@@ -20,7 +20,7 @@ docker compose up
 ---
 ## w/ ssl 
 ```shell
-cd compress_ssl
+cd composedir_ssl
 ```
 
 ### 証明書のディレクトリ配置
