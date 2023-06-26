@@ -1,7 +1,7 @@
 # multi_streamlit_apps_reverse_proxy
 
 
-- ligtsailに　nginxコンテナ, streamlit_app1コンテナ, streamlit_app2コンテナ を docker comppose で起動
+- 一つのインスタンスに　nginxコンテナ, streamlit_app1コンテナ, streamlit_app2コンテナ を docker comppose で起動
 
  
 - reverse-proxyにて、サブドメイン別アクセスを同インスタンス内のアプリたちへ転送
