@@ -61,14 +61,16 @@ $ tree
 │   └── 2
 │       ├── fullchain.pem
 │       └── privkey.pem
+│
 ├── docker-compose.yaml
-├── history.txt
 ├── nginx-reverse-proxy
 │   └── apps_nginx.conf
+│
 ├── streamlit_1
 │   ├── Dockerfile
 │   ├── app.py
 │   └── requirements.txt
+│
 └── streamlit_2
     ├── Dockerfile
     ├── app.py
