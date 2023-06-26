@@ -1,5 +1,12 @@
 # multi_streamlit_apps_reverse_proxy
 
+
+- ligtsailに　nginxコンテナ, streamlit_app1コンテナ, streamlit_app2コンテナ を docker comppose で起動
+- reverse-proxyにて、サブドメイン別アクセスを同インスタンス内のアプリたちへ転送
+
+ サブドメイン　1.mydomain.com:80 へのリクエスト	>	streamlit_app1（:8501）へ
+ サブドメイン　2.mydomain.com:80 へのリクエスト	>	streamlit_app2（:8502）へ
+
 ```shell
 git clone ~~
 ```
