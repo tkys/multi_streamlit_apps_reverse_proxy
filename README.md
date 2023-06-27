@@ -34,8 +34,8 @@ cd composedir_ssl
 
 ### 証明書のディレクトリ配置
 ```shell
-mkdir certs
-mkdir -p cert2/1 certs/2
+mkdir -p certs/1
+mkdir -p certs/2
 ```
 
 ### 証明書発行
