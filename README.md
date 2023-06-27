@@ -19,6 +19,27 @@
 cd composedir
 ```
 
+ディレクトリ配置はこんな感じ
+```shell
+$ tree ../composedir
+
+../composedir
+.
+├── docker-compose.yaml
+├── nginx-reverse-proxy
+│   └── apps_nginx.conf
+│
+├── streamlit_1
+│   ├── Dockerfile
+│   ├── app.py
+│   └── requirements.txt
+│
+└── streamlit_2
+    ├── Dockerfile
+    ├── app.py
+    └── requirements.txt
+```
+
 ### 起動
 ```shell
 docker compose build
@@ -64,7 +85,9 @@ sudo cp /etc/letsencrypt/live/2.devcfspi.com/privkey.pem    ./certs/2/
 
 ディレクトリ配置はこんな感じ
 ```shell
-$ tree
+$ tree ../composedir_ssl
+
+../composedir_ssl
 .
 ├── certs
 │   ├── 1
