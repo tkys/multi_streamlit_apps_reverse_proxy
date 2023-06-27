@@ -68,7 +68,7 @@ sudo certbot certonly --standalone -d 1.mydomain.com
 sudo certbot certonly --standalone -d 2.mydomain.com
 
 #確認
-sudo ls /etc/letsencrypt/live/*
+sudo tree /etc/letsencrypt/live/
 
 ```
 
