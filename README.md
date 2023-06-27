@@ -45,6 +45,13 @@ $ tree ../composedir
 docker compose build
 docker compose up
 ```
+```
+docker compose ps
+NAME                  IMAGE                    COMMAND                  SERVICE             CREATED             STATUS              PORTS
+nginx-reverse-proxy   nginx                    "/docker-entrypoint.…"   nginx               23 hours ago        Up 11 seconds       0.0.0.0:80->80/tcp, :::80->80/tcp
+streamlit_1           composedir-streamlit_1   "streamlit run app.p…"   streamlit_1         23 hours ago        Up 11 seconds       0.0.0.0:8501->8501/tcp, :::8501->8501/tcp
+streamlit_2           composedir-streamlit_2   "streamlit run app.p…"   streamlit_2         22 hours ago        Up 11 seconds       0.0.0.0:8502->8502/tcp, :::8502->8502/tcp
+```
 
  `http://1.mydomain.com`
  `http://2.mydomain.com`
@@ -122,6 +129,13 @@ $ tree ../composedir_ssl
 ```shell
 docker compose build
 docker compose up
+```
+```
+docker compose ps
+NAME                      IMAGE                        COMMAND                  SERVICE             CREATED             STATUS              PORTS
+nginx-reverse-proxy_ssl   nginx                        "/docker-entrypoint.…"   nginx               7 seconds ago       Up 5 seconds        0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp
+streamlit_1_ssl           composedir_ssl-streamlit_1   "streamlit run app.p…"   streamlit_1         7 seconds ago       Up 5 seconds        0.0.0.0:8501->8501/tcp, :::8501->8501/tcp
+streamlit_2_ssl           composedir_ssl-streamlit_2   "streamlit run app.p…"   streamlit_2         7 seconds ago       Up 5 seconds        0.0.0.0:8502->8502/tcp, :::8502->8502/tcp
 ```
 
 `https://1.mydomain.com`
