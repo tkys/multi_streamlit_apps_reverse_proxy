@@ -32,31 +32,34 @@ docker compose up
 cd composedir_ssl
 ```
 
-### 証明書のディレクトリ配置
-```shell
-mkdir -p certs/1
-mkdir -p certs/2
-```
-
-### 証明書発行
+### `certbot`のインストール、証明書発行
 
 ```shell
+#インストール
 sudo apt-get install certbot
 
-sudo certbot certonly --standalone -d 1.devcfspi.com
-sudo certbot certonly --standalone -d 2.devcfspi.com
+#発行
+sudo certbot certonly --standalone -d 1.mydomain.com
+sudo certbot certonly --standalone -d 2.mydomain.com
+
+#確認
+sudo ls /etc/letsencrypt/live/*
+
 ```
 
 
-### 証明書ごとにコピー配置
+### 各アプリドメイン毎に証明書をコピー配置
+
 ```shell
+
+mkdir -p certs/1
 sudo cp /etc/letsencrypt/live/1.devcfspi.com/fullchain.pem  ./certs/1/
 sudo cp /etc/letsencrypt/live/1.devcfspi.com/privkey.pem    ./certs/1/
-```
 
-```shell
+mkdir -p certs/2
 sudo cp /etc/letsencrypt/live/2.devcfspi.com/fullchain.pem  ./certs/2/
 sudo cp /etc/letsencrypt/live/2.devcfspi.com/privkey.pem    ./certs/2/
+
 ```
 
 ディレクトリ配置はこんな感じ
