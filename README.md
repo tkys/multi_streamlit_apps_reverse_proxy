@@ -46,6 +46,10 @@ docker compose build
 docker compose up
 ```
 
+ `http://1.mydomain.com`
+ `http://2.mydomain.com`
+へアクセス出来ればOK
+
 
 ---
 ## w/ ssl 
@@ -67,6 +71,7 @@ sudo certbot certonly --standalone -d 2.mydomain.com
 sudo ls /etc/letsencrypt/live/*
 
 ```
+
 
 
 ### 各アプリドメイン毎に証明書をコピー配置
@@ -118,3 +123,7 @@ $ tree ../composedir_ssl
 docker compose build
 docker compose up
 ```
+
+`https://1.mydomain.com`
+`https://2.mydomain.com`
+へアクセス出来ればOK
