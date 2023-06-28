@@ -19,7 +19,7 @@
 cd composedir
 ```
 
-ディレクトリ配置はこんな感じ
+ディレクトリ配置
 ```shell
 $ tree ../composedir
 
@@ -38,6 +38,83 @@ $ tree ../composedir
     ├── Dockerfile
     ├── app.py
     └── requirements.txt
+```
+
+
+docker-compose.yaml 
+```
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx-reverse-proxy
+    volumes:
+      - ./nginx-reverse-proxy/apps_nginx.conf:/etc/nginx/conf.d/apps_nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - mynetwork
+
+  streamlit_1:
+    build:
+      context: ./streamlit_1
+      dockerfile: Dockerfile
+    container_name: streamlit_1
+    working_dir: /app
+    volumes:
+      - ./streamlit_1:/app
+    ports:
+      - 8501:8501
+    networks:
+      - mynetwork
+
+  streamlit_2:
+    build:
+      context: ./streamlit_2
+      dockerfile: Dockerfile
+    container_name: streamlit_2
+    working_dir: /app
+    volumes:
+      - ./streamlit_2:/app
+    ports:
+      - 8502:8502
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+```
+./composedir/nginx-reverse-proxy/apps_nginx.conf 
+```
+server {
+    listen 80;
+    server_name 1.mydomain.com;
+
+    location / {
+        proxy_pass http://streamlit_1:8501;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    server_name 2.mydomain.com;
+
+    location / {
+        proxy_pass http://streamlit_2:8502;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
 ```
 
 ### 起動
@@ -124,6 +201,101 @@ $ tree ../composedir_ssl
     └── requirements.txt
 ```
 
+docker-compose.yaml 
+```
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx-reverse-proxy_ssl
+    volumes:
+      - ./nginx-reverse-proxy/apps_nginx.conf:/etc/nginx/conf.d/apps_nginx.conf
+      - ./certs:/etc/nginx/certs #証明書ディレクトリ
+    ports:
+      - 80:80
+      - 443:443 #https
+    networks:
+      - mynetwork
+
+  streamlit_1:
+    build:
+      context: ./streamlit_1
+      dockerfile: Dockerfile
+    container_name: streamlit_1_ssl
+    working_dir: /app
+    volumes:
+      - ./streamlit_1:/app
+    ports:
+      - 8501:8501
+    networks:
+      - mynetwork
+
+  streamlit_2:
+    build:
+      context: ./streamlit_2
+      dockerfile: Dockerfile
+    container_name: streamlit_2_ssl
+    working_dir: /app
+    volumes:
+      - ./streamlit_2:/app
+    ports:
+      - 8502:8502
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+```
+
+./composedir_ssl/nginx-reverse-proxy/apps_nginx.conf 
+```
+server {
+    listen 80;
+    server_name 1.mydomain.com;
+    return 301 https://$host$request_uri;  # httpからhttpsへのリダイレクト
+}
+
+server {
+    listen 443 ssl;
+    server_name 1.mydomain.com;
+
+    ssl_certificate /etc/nginx/certs/1/fullchain.pem;  # サブドメイン1の証明書のパス
+    ssl_certificate_key /etc/nginx/certs/1/privkey.pem;  # サブドメイン1の秘密鍵のパス
+
+    location / {
+        proxy_pass http://streamlit_1:8501;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    server_name 2.mydomain.com;
+    return 301 https://$host$request_uri;  # httpからhttpsへのリダイレクト
+}
+
+server {
+    listen 443 ssl;
+    server_name 2.mydomain.com;
+
+    ssl_certificate /etc/nginx/certs/2/fullchain.pem;  # サブドメイン2の証明書のパス
+    ssl_certificate_key /etc/nginx/certs/2/privkey.pem;  # サブドメイン2の秘密鍵のパス
+
+    location / {
+        proxy_pass http://streamlit_2:8502;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
 
 ### 起動
 ```shell
