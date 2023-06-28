@@ -117,7 +117,7 @@ server {
 }
 ```
 
-### 起動
+### ビルド、起動
 ```shell
 docker compose build
 docker compose up
@@ -172,7 +172,7 @@ sudo cp /etc/letsencrypt/live/2.devcfspi.com/privkey.pem    ./certs/2/
 
 ```
 
-ディレクトリ配置はこんな感じ
+ディレクトリ配置
 ```shell
 $ tree ../composedir_ssl
 
@@ -297,7 +297,7 @@ server {
 }
 ```
 
-### 起動
+### ビルド、起動
 ```shell
 docker compose build
 docker compose up
