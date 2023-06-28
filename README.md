@@ -1,7 +1,12 @@
 # multi_streamlit_apps_reverse_proxy
 
 
-- 一つのインスタンスに　nginxコンテナ, streamlit_app1コンテナ, streamlit_app2コンテナ を docker comppose で起動
+- 一つのインスタンスに
+   - nginxコンテナ
+   - streamlit_app1コンテナ
+   - streamlit_app2コンテナ
+     
+    を docker comppose で起動
 
  
 - reverse-proxyにて、サブドメイン別アクセスを同インスタンス内のアプリたちへ転送
@@ -10,6 +15,7 @@
   - サブドメイン 2.mydomain.com:80 へのリクエスト	->	streamlit_app2（:8502）へ
 
 * サブドメイン含めDNS設定は終えておく
+* certbotにてSSL証明書発行しhttps対応
 
 ---
 
