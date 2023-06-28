@@ -14,7 +14,7 @@
   - サブドメイン 1.mydomain.com:80 へのリクエスト	->	streamlit_app1（:8501）へ
   - サブドメイン 2.mydomain.com:80 へのリクエスト	->	streamlit_app2（:8502）へ
 
-* サブドメイン含めDNS設定は終えておく
+* ドメイン取得(mydomain)、サブドメイン含めDNS設定は終えておく
 * certbotにてSSL証明書発行しhttps対応
 
 ---
