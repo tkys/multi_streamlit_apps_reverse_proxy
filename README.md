@@ -185,12 +185,12 @@ sudo tree /etc/letsencrypt/live/
 ```shell
 
 mkdir -p certs/1
-sudo cp /etc/letsencrypt/live/1.devcfspi.com/fullchain.pem  ./certs/1/
-sudo cp /etc/letsencrypt/live/1.devcfspi.com/privkey.pem    ./certs/1/
+sudo cp /etc/letsencrypt/live/1.mydomain.com/fullchain.pem  ./certs/1/
+sudo cp /etc/letsencrypt/live/1.mydomain.com/privkey.pem    ./certs/1/
 
 mkdir -p certs/2
-sudo cp /etc/letsencrypt/live/2.devcfspi.com/fullchain.pem  ./certs/2/
-sudo cp /etc/letsencrypt/live/2.devcfspi.com/privkey.pem    ./certs/2/
+sudo cp /etc/letsencrypt/live/2.mydomain.com/fullchain.pem  ./certs/2/
+sudo cp /etc/letsencrypt/live/2.mydomain.com/privkey.pem    ./certs/2/
 
 ```
 
