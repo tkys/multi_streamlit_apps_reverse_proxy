@@ -153,13 +153,27 @@ cd composedir_ssl
 #インストール
 sudo apt-get install certbot
 
-#発行
+#サブドメイン毎に発行
 sudo certbot certonly --standalone -d 1.mydomain.com
 sudo certbot certonly --standalone -d 2.mydomain.com
 
 #確認
 sudo tree /etc/letsencrypt/live/
 
+/etc/letsencrypt/live/]
+├── 1.mydomain.com
+│   ├── README
+│   ├── cert.pem -> ../../archive/1.mydomain.com/cert1.pem
+│   ├── chain.pem -> ../../archive/1.mydomain.com/chain1.pem
+│   ├── fullchain.pem -> ../../archive/1.mydomain.com/fullchain1.pem
+│   └── privkey.pem -> ../../archive/1.mydomain.com/privkey1.pem
+├── 2.mydomain.com
+│   ├── README
+│   ├── cert.pem -> ../../archive/2.mydomain.com/cert1.pem
+│   ├── chain.pem -> ../../archive/2.mydomain.com/chain1.pem
+│   ├── fullchain.pem -> ../../archive/2.mydomain.com/fullchain1.pem
+│   └── privkey.pem -> ../../archive/2.mydomain.com/privkey1.pem
+└── README
 ```
 
 
