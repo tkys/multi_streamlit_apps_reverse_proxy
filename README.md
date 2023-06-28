@@ -47,7 +47,7 @@ $ tree ../composedir
 ```
 
 
-docker-compose.yaml 
+./composedir/docker-compose.yaml 
 ```
 version: '3'
 
@@ -207,7 +207,7 @@ $ tree ../composedir_ssl
     └── requirements.txt
 ```
 
-docker-compose.yaml 
+./composedir_ssl/docker-compose.yaml 
 ```
 version: '3'
 
